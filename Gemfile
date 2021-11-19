@@ -44,6 +44,9 @@ group :development, :test do
   gem 'pry'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'jsonapi-rspec'
 end
 
 group :development do
