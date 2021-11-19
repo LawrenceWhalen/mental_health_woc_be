@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe RegiistrationsController do
+describe 'RegistrationsController' do
   let (:user) {build_user}
   let (:existing_user) { create_user }
   let (:signup_url) { '/api/signup' }
@@ -42,7 +42,11 @@ describe RegiistrationsController do
     end
 
     it 'returns 400' do
-      binding.pry
+      expect(response.status).to eq(400)
+    end
+
+    it 'returns an error message' do
+      expect(json['errors'][0]['detail']).to eq("Email has already been taken")
     end
   end
 end
