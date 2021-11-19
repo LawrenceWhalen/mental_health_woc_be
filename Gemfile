@@ -30,6 +30,7 @@ gem 'figaro'
 
 # Encrypt and decrypt tokens
 # gem 'jwt'
+gem 'devise-jwt'
 
 # authentication control
 gem 'devise'
