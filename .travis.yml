@@ -5,12 +5,12 @@ script:
 - bundle exec rails db:{create,migrate} RAILS_ENV=test
 - bundle exec rspec
 before_script:
-  - psql -c 'create database db_test;' -U postgres
+- psql -c 'create database db_test;' -U postgres
 services:
-  - postgresql
-# deploy:
-#   provider: heroku
-#   api_key:
-#     secure: 
-#   app: 
-#   run: rails db:migrate
+- postgresql
+deploy:
+  provider: heroku
+  api_key:
+    secure: yEmMyUwWrYFKBzhiyQibaqo/4fQQHxGkl9ojnL2GjBFPpEDRGNEnXr/3mqBgn6awzoRoaZiwTb1Fao7+/SpwfVbedSOFTvT0rQTR86YEe3IeJ6RnW9hd9BKjKI9PHj8/879pVM39SoJ9uCKk7/IwU9Tk012cYvxxFo2lyJAH8TusXYCK+QHNdRcXhzyCjJuyrloi3dDgZURyw1LdmwYMh407myRKKcGcla73j1zyKtYJ3P/a+xNvfXwjucDeNG/SGgoGrfSdxScriC4KndXMPWhifn3NKsOBu0PpbJfqPiObRSPrlnmd9j8cegjrz40HYMKoFf9wTFh6LeULVv3ySy3VBZiVAH8nEUmMOCYKBZSus2sYVlEwXpTScyWpWgv9uf3NCAeZxhhhd0ND+3KWam6kGz4qP1WLFSvYcO1X6j5pMKlfTbh5zPhxQgfvYdsSrxuLI29zFOSl0NMCI0DPE8knuB/z/T/KOsdpWlcsoI74ZYhKLgplsArTMG9KWZZax0HLPQ4V13UpUwfw7wtjZajz3CK5bdLyViCjQ8YBm4cG5tc+hCKOiBBbWKO5C4N45hOp4yMZOxUCX/TOKG+ZXoubRQXVgKQc+bXmJqJBUwLlCYw8jG3/kl7h3Lsc0QmwZgbBhEzcG+ctLhFaKfffHlhDb4Sal6Kele2CQcl/oUc=
+  app: woc-mental-health-be
+  run: rails db:migrate
