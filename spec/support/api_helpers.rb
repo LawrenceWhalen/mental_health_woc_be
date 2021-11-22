@@ -13,4 +13,12 @@ module ApiHelpers
     }
   end
 
+  def create_post_api(post)
+    post "/api/users/#{current_user}/posts", params: {
+      post: {
+        title: post.title,
+        content: post.content
+      }
+    }
+  end
 end
