@@ -7,7 +7,7 @@ RSpec.describe Post, type: :model do
   end
 
   describe 'Post validations' do
-    it { should validate(:title), presence: true}
-    it { should validate(:content), presence: true}
+    it { should validate_presence_of(:title) }
+    it { should validate_presence_of(:content) }
   end
 end
