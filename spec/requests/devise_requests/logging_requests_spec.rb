@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe 'login/out requests' do
+RSpec.describe SessionsController, type: :request do
   let (:user) { create_user }
   let (:login_url) { '/api/login' }
   let (:logout_url) { '/api/logout' }
 
   context 'When loggin in' do
     before do
-      login)(user)
+      login_with_api(user)
     end
 
     it 'returns a json token' do
@@ -24,7 +24,7 @@ RSpec.describe 'login/out requests' do
       post login_url, params: {
         user: {
           email: user.email,
-          password: "#{user.email}_incorrect"
+          password: "#{user.password}_incorrect"
         }
       }
     end
@@ -33,8 +33,8 @@ RSpec.describe 'login/out requests' do
       expect(response.status).to eq(401)
     end
 
-    it 'returns an error message' do
-      expect(json['errors'][0]['detail']).to eq("Email has already been taken")
+    it 'returns a non-exploitable error message' do
+      expect(json['error']).to eq("Invalid Email or password.")
     end
   end
 
@@ -52,8 +52,8 @@ RSpec.describe 'login/out requests' do
       expect(response.status).to eq(401)
     end
 
-    it 'returns an error message' do
-      expect(json['errors'][0]['detail']).to eq("Email has already been taken")
+    it 'returns a non-exploitable error message' do
+      expect(json['error']).to eq("Invalid Email or password.")
     end
   end
 
@@ -71,8 +71,8 @@ RSpec.describe 'login/out requests' do
       expect(response.status).to eq(401)
     end
 
-    it 'returns an error message' do
-      expect(json['errors'][0]['detail']).to eq("Email has already been taken")
+    it 'returns a non-exploitable error message' do
+      expect(json['error']).to eq("Invalid Email or password.")
     end
   end
 
