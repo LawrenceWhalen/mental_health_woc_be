@@ -3,6 +3,7 @@ class ApplicationController < ActionController::API
   before_action :authenticate_user!
 
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  rescue_from ActionController::ParameterMissing, with: :blank_params
 
   protected
 
@@ -23,10 +24,21 @@ class ApplicationController < ActionController::API
       'errors': [
         {
           'status': '404',
-          'title': 'Not Found'
+          'message': 'Not Found'
         }
       ]
     }, status: 404
+  end
+
+  def blank_params
+    render json: {
+      'errors': [
+        {
+          'status': '403',
+          'message': 'Missing required fields'
+        }
+      ]
+    }, status: 403
   end
 
 end
