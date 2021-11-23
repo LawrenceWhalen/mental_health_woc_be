@@ -13,12 +13,16 @@ module ApiHelpers
     }
   end
 
-  def create_post_api(post)
-    post "/api/users/#{current_user}/posts", params: {
+  def create_post_api(post, response)
+    post "/api/v1/users/#{user.id}/posts", params: {
       post: {
         title: post.title,
         content: post.content
       }
+    }, 
+    headers: {
+      'Authorization': response['Authorization']
     }
   end
+
 end
